@@ -40,11 +40,17 @@ struct TodoListView: View {
             }
             .navigationTitle("To Do List")
             .toolbar {
-                Button {
-                    viewModel.showingNewItemView = true
-                } label: {
-                    Image(systemName: "plus")
+                HStack{
+                    Text("\(Date().timeIntervalSince1970.formatted(date: .abbreviated, time: .shortened))")
+
+                    Spacer()
+                        Button {
+                        viewModel.showingNewItemView = true
+                    } label: {
+                        Image(systemName: "plus")
+                    }
                 }
+                
             }
             .sheet(isPresented: $viewModel.showingNewItemView) {
                 NewItemView(newItemPresented: $viewModel.showingNewItemView)
